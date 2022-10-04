@@ -1,0 +1,5 @@
+## This is a README file just to put the Jenkins badges
+
+[![Build Status](http://157.230.222.153:8080/buildStatus/icon?job=result-build)](http://157.230.222.153:8080/job/result-build/)
+
+[![Build Status](http://157.230.222.153:8080/buildStatus/icon?job=result-test)](http://157.230.222.153:8080/job/result-test/)
