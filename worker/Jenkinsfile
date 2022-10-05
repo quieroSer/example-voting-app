@@ -6,6 +6,9 @@ pipeline {
     }
     stages {
         stage('Build') {
+            when{
+                changeset '**/wroker/**'
+            }
             steps {
                 echo 'Compiling worker app'
                 dir('worker'){
@@ -14,6 +17,9 @@ pipeline {
             }
         }
         stage('Test') {
+            when{
+                changeset '**/wroker/**'
+            }
             steps {
                 echo 'Running Unit Tests on worker app'
                 dir('worker'){
@@ -22,6 +28,10 @@ pipeline {
             }
         }
         stage('Package') {
+            when{
+                branch 'master'
+                changeset '**/wroker/**'
+            }
             steps {
                 echo 'Package worker app'
                 dir('worker'){
