@@ -71,8 +71,8 @@ pipeline {
             steps {
                 echo 'Package worker app'
                 script{
-                      docker.withRegistry('https://index.docker.io/v1', 'dockerhub') {
-                              def testImage = docker.build("donquijotedelasnubes/worker:v${env.BUILD_ID}", "./worker")
+                      docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+                              def workerImage = docker.build("donquijotedelasnubes/worker:v${env.BUILD_ID}", "./worker")
                               workerImage.push()
                       }
                 }
