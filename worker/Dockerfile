@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN maven package -DskipTests && \
+RUN mvn package -DskipTests && \
     mv target/worker-jar-with-dependencies.jar /run/worker.jar && \
     rm -rf /app/*
 
