@@ -52,8 +52,8 @@ pipeline{
                       }
                 }
             }
+    }
   }
-
   post{
       always{
         echo 'pipeline for result complete'
