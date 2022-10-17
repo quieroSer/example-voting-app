@@ -3,7 +3,7 @@ pipeline {
     agent none
 
     stages {
-        stage('Build') {
+        stage('worker Build') {
             agent {
               docker{
                 image 'maven:3.6.1-jdk-8-alpine'
@@ -20,7 +20,7 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('worker Test') {
             agent {
               docker{
                 image 'maven:3.6.1-jdk-8-alpine'
@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('Package'){
+        stage('worker Package'){
             agent {
               docker{
                 image 'maven:3.6.1-jdk-8-alpine'
@@ -56,7 +56,7 @@ pipeline {
             }
         }
 
-        stage('docker-package') {
+        stage('worker docker-package') {
             agent any
             when{
                 branch 'master'
@@ -73,8 +73,7 @@ pipeline {
                 }
             }
         }
-
-        stage('build'){
+        stage('result build'){
           agent{
             docker{
               image 'node:8.16.0-alpine'
@@ -90,8 +89,7 @@ pipeline {
             }
           }
         }
-
-        stage('test'){
+        stage('result test'){
           agent{
             docker{
               image 'node:8.16.0-alpine'
@@ -108,7 +106,7 @@ pipeline {
             }
           }
         }
-        stage('docker-package') {
+        stage('result docker-package') {
                 agent any
                 when{
                     branch 'master'
@@ -125,7 +123,7 @@ pipeline {
                     }
                 }
         }
-        stage('build'){
+        stage('vote build'){
           agent{
             docker{
               image 'python:2.7.16-slim'
@@ -142,7 +140,7 @@ pipeline {
             }
           }
         }
-        stage('test'){
+        stage('vote test'){
           agent{
             docker{
               image 'python:2.7.16-slim'
@@ -160,7 +158,7 @@ pipeline {
             }
           }
         }
-        stage('docker-package') {
+        stage('vote docker-package') {
                 agent any
                 when{
                     branch 'master'
