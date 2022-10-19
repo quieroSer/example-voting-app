@@ -31,13 +31,25 @@ pipeline{
         changeset "**/vote/**"
       }
       steps{
-        echo 'running unit tests on result app'
+        echo 'running unit tests on vote app'
         dir('vote'){
           sh 'pip install -r requirements.txt'
           sh 'nosetests -v'
         }
       }
     }
+    stage('vote integration'){
+      agent any
+      when{
+        changeset "**/vote/**"
+        branch 'master'
+      }
+      steps{
+        echo 'running integration tests on vote app'
+        dir('vote'){
+          sh 'integration_test.sh'
+        }
+      }
     stage('docker-package') {
             agent any
             when{
