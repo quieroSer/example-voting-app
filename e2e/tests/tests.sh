@@ -22,7 +22,13 @@ echo -e " I: Submitting one more vote...\n"
 curl -sS -X POST --data "vote=b" http://vote > /dev/null
 sleep 3
 
-new=`phantomjs render.js "http://result:4000/" | grep -i vote | cut -d ">" -f 4 | cut -d " " -f1`
+#new=`phantomjs render.js "http://result:4000/" | grep -i vote | cut -d ">" -f 4 | cut -d " " -f1`
+current=`phantomjs render.js "http://result:4000/" | grep -i vote | cut -d ">" -f 4 | cut -d " " -f1 | sed -e 's/\!//g'`
+ 
+echo $current | grep -q -e "[0-9]\+"
+if [[ $? -ne 0 ]]; then
+  current=1
+fi
 
 
   echo -e "\n\n-----------------"
