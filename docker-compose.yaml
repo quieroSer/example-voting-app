@@ -11,7 +11,7 @@ services:
   vote:
     image: donquijotedelasnubes/vote:master
     ports:
-      - 5045:80
+      - 5060:80
     depends_on:
       - redis
     networks:
@@ -35,7 +35,7 @@ services:
   result:
     image: donquijotedelasnubes/result:master
     ports:
-      - 5046:4000
+      - 5061:4000
     depends_on:
       - db
     networks:
